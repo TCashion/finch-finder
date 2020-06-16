@@ -6,7 +6,7 @@
 <div class="row">
     {% for bird in birds %}
         <div class="col s12 m7 l6 xl4">
-            <div class="card">
+            <div class="card hoverable">
                 <div class="card-image">
                 <img src="https://via.placeholder.com/250x250">
                 <span class="card-title">{{ bird.name }}</span>
@@ -27,8 +27,8 @@
                 </div>
                 <p>{{ bird.description }}</p>
                 </div>
-                <div class="card-action">
-                <a href="{% url 'detail' bird.id %}">Details</a>
+                <div class="card-action indigo accent-1">
+                <a href="{% url 'detail' bird.id %}" >Details</a>
                 </div>
             </div>
         </div>
