@@ -1,8 +1,10 @@
 from django.shortcuts import render
+from .models import Bird
 
 # Create your views here.
 def home(request):
     return render(request, 'main_app/home.html')
 
 def birds_index(request):
-    return render(request, 'birds/index.html')
+    birds = Bird.objects.all()
+    return render(request, 'birds/index.html', { 'birds': birds })

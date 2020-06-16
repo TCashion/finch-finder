@@ -3,4 +3,32 @@
 
 <h1>View all birds</h1>
 
+<div class="row">
+    {% for bird in birds %}
+            <div class="col s12 m7 l5">
+                <div class="card">
+                    <div class="card-image">
+                    <img src="https://via.placeholder.com/250x250">
+                    <span class="card-title">{{ bird.name }}</span>
+                    </div>
+                    <div class="card-content">
+                    <span class="card-title">{{ bird.scientific_name }}</span>
+                    <p>{{ bird.description }}</p>
+                    <br>
+                    <p>Observed {{ bird.date }}</p>
+                    <br>
+                    {% if bird.invasive %}
+                        <p style="color:red">Invasive</p>
+                    {% else %}
+                        <p style="color:green">Non-Invasive</p>
+                    {% endif %}
+                    </div>
+                    <div class="card-action">
+                    <a href="#">This is a link</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
 {% endblock %}
