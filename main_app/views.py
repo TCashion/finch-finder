@@ -8,3 +8,8 @@ def home(request):
 def birds_index(request):
     birds = Bird.objects.all()
     return render(request, 'birds/index.html', { 'birds': birds })
+
+
+def birds_detail(request, bird_id):
+    bird = Bird.objects.get(id=bird_id)
+    return render(request, 'birds/detail.html', { 'bird': bird })
