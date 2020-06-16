@@ -4,5 +4,5 @@ from django.shortcuts import render
 def home(request):
     return render(request, 'main_app/home.html')
 
-def finches_index(request):
-    return render(request, 'finches/index.html')
+def birds_index(request):
+    return render(request, 'birds/index.html')
