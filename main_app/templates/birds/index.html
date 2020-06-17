@@ -8,11 +8,11 @@
         <div class="col s12 m7 l6 xl4">
             <div class="card hoverable">
                 <div class="card-image">
-                <img src="https://via.placeholder.com/250x250">
-                <span class="card-title">{{ bird.name }}</span>
+                    <img src="https://via.placeholder.com/250x250">
+                    <span class="card-title">{{ bird.name }}</span>
                 </div>
                 <div class="card-content">
-                <span class="card-title">{{ bird.scientific_name }}</span>
+                    <span class="card-title">{{ bird.scientific_name }}</span>
                 <div class="row">
                     <div class="col s12 m6">
                         <p>Observed {{ bird.date }}</p>
@@ -25,7 +25,7 @@
                         {% endif %}
                     </div>
                 </div>
-                <p>{{ bird.description }}</p>
+                    <p>{{ bird.description }}</p>
                 </div>
                 <div class="card-action indigo accent-1">
                     <a href="{% url 'birds_detail' bird.id %}">Details</a>

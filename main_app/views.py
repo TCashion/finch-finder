@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Bird
 
 
@@ -15,3 +16,18 @@ def birds_index(request):
 def birds_detail(request, bird_id):
     bird = Bird.objects.get(id=bird_id)
     return render(request, 'birds/detail.html', { 'bird': bird })
+
+
+class BirdCreate(CreateView):
+    model = Bird
+    fields = '__all__'
+
+
+class BirdUpdate(UpdateView):
+    model = Bird
+    fields = '__all__'
+
+
+class BirdDelete(DeleteView):
+    model = Bird
+    fields = '__all__'
