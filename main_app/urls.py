@@ -8,4 +8,5 @@ urlpatterns = [
     path('birds/create/', views.BirdCreate.as_view(), name='birds_create'),
     path('birds/<int:pk>/update/', views.BirdUpdate.as_view(), name='birds_update'),
     path('birds/<int:pk>/delete/', views.BirdDelete.as_view(), name='birds_delete'),
+    path('birds/<int:pk>/add_sighting', views.add_sighting, name='add_sighting')
 ]
