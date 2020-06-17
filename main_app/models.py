@@ -7,3 +7,6 @@ class Bird(models.Model):
     description = models.TextField(max_length=250)
     date = models.DateField()
     invasive = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.name
