@@ -4,7 +4,7 @@ from .models import Bird
 
 # Create your views here.
 def home(request):
-    return render(request, 'main_app/home.html')
+    return render(request, 'home.html')
 
 
 def birds_index(request):
