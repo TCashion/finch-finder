@@ -30,4 +30,4 @@ class BirdUpdate(UpdateView):
 
 class BirdDelete(DeleteView):
     model = Bird
-    fields = '__all__'
+    success_url = '/birds/'

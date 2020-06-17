@@ -15,4 +15,4 @@ class Bird(models.Model):
 
 
     def get_absolute_url(self):
-        return reverse('birds_detail', kwargs={'cat_id' : self.id})
+        return reverse('birds_detail', kwargs={'bird_id' : self.id})

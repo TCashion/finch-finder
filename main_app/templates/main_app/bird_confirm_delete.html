@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Delete Bird</h1>
+
+<h4>Are you sure you want to delete <span class="indigo-text text-lighten-1">{{ object.name }}</span>?</h4>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <button class="btn crud-btn indigo accent-1">DELETE</button>
+    <a href="{% url 'birds_detail' bird.id %}">Cancel</a>
+</form>
+
+{% endblock %}
