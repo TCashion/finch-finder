@@ -22,7 +22,7 @@ class Location(models.Model):
         return f"Birding location: {self.name}"
 
     def get_absolute_url(self):
-        return reverse('locations_detail', kwargs={'pk': self.id})
+        return reverse('locations_detail', kwargs={'location_id': self.id})
 
 
 class Bird(models.Model):
