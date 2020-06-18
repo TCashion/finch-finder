@@ -20,4 +20,68 @@
     </div>
 </div>
 
+<hr class="indigo" style="width:100%">
+
+<div class="row detail-card-container" style="display:flex">
+    <div class="col s12" style="margin: 3vw auto">
+        <hr class="indigo mobile-hr" style="width:100%; margin: 30px 0;">
+        <div class="row">
+            <div class="col" style="width:100%;">
+              <div class="card-panel">
+                <h4 class="indigo-text text-lighten-1">Birds you've spotted here:</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Bird:</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for bird in birds %}
+                            {% if location in bird.locations.all %}
+                                    <tr>
+                                        <td>{{ bird.name }}</td>
+                                        <td>
+                                            <form action="" method="POST">
+                                                {% csrf_token %}
+                                                <button class="btn indigo accent-1">Details</button>
+                                        </td>
+                                    </tr>
+                                    {% endif %}
+                                {% endfor %}
+                            </tbody>
+                        </table>
+
+
+                {% if bird.locations.count %}
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Location:</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for location in bird.locations.all %}
+                                <tr>
+                                    <td>{{ location.name }}</td>
+                                    <td>
+                                        <form action="{% url 'disassoc_location' bird.id location.id %}" method="POST">
+                                            {% csrf_token %}
+                                            <button class="btn indigo accent-1">Remove</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <p>No associated locations. Select from the right, or <a href="{% url 'locations_create' %}">create a new location</a>.</p>
+                {% endif %}
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 {% endblock %}

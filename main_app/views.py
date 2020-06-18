@@ -40,8 +40,12 @@ def locations_index(request):
 
 
 def locations_detail(request, location_id):
+    birds = Bird.objects.all()
     location = Location.objects.get(id=location_id)
-    return render(request, 'locations/detail.html', {'location': location})
+    return render(request, 'locations/detail.html', {
+        'location': location, 
+        'birds': birds
+    })
 
 
 def assoc_location(request, bird_id, location_id):
