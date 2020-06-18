@@ -8,5 +8,6 @@ urlpatterns = [
     path('birds/create/', views.BirdCreate.as_view(), name='birds_create'),
     path('birds/<int:pk>/update/', views.BirdUpdate.as_view(), name='birds_update'),
     path('birds/<int:pk>/delete/', views.BirdDelete.as_view(), name='birds_delete'),
-    path('birds/<int:bird_id>/add_sighting', views.add_sighting, name='add_sighting')
+    path('birds/<int:bird_id>/add_sighting', views.add_sighting, name='add_sighting'),
+    path('locations/', views.locations_index, name='locations_index')
 ]

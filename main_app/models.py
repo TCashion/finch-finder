@@ -14,11 +14,20 @@ HABITATS = (
 
 
 # Create your models here.
+class Location(models.Model):
+    name = models.CharField('Birding location', max_length=100)
+
+
+    def __str__(self):
+        return f"Birding location: {self.name}"
+
+
 class Bird(models.Model):
     name = models.CharField('Common Name', max_length=100)
     scientific_name = models.CharField(max_length=100)
     description = models.TextField(max_length=250)
     invasive = models.BooleanField('Invasive?', default=False)
+    locations = models.ManyToManyField(Location)
 
 
     def __str__(self):
