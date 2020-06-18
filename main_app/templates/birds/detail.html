@@ -40,6 +40,11 @@
 <script>
     const dateEl = document.getElementById('id_date');
     const selectEl = document.getElementById('id_habitat');
+    const selectionEls = document.querySelectorAll('.dropdown-content > li > span');
+    selectionEls.forEach(function(el) {
+        el.classList.add('indigo-text');
+        el.classList.add('text-lighten-1');
+    });
 
     M.Datepicker.init(dateEl, {
         format: 'yyyy-mm-dd',
