@@ -60,3 +60,8 @@ class LocationCreate(CreateView):
 
 class LocationDetail(DetailView):
     model = Location
+
+
+class LocationDelete(DeleteView):
+    model = Location
+    success_url = '/locations/'
