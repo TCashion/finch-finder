@@ -9,6 +9,7 @@ HABITATS = (
     ('N', 'In a nest'),
     ('F', 'Flying'),
     ('W', 'Wading or swimming'),
+    ('E', 'Eating at a feeder')
 )
 
 

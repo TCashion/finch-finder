@@ -33,6 +33,10 @@ input[type=checkbox]:checked, input[type=checkbox]:not(:checked) {
     .crud-btn-container {
         flex-direction: row;
     }
+
+    .mobile-hr {
+        display: none;
+    }
 }
 
 @media (min-width: 768px) {

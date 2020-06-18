@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Bird
 from .forms import SightingForm
@@ -24,7 +24,12 @@ def birds_detail(request, bird_id):
 
 
 def add_sighting(request, bird_id):
-    pass
+    form = SightingForm(request.POST)
+    if form.is_valid():
+        new_sighting = form.save(commit=False)
+        new_sighting.bird_id = bird_id
+        new_sighting.save()
+    return redirect('birds_detail', bird_id=bird_id)
 
 class BirdCreate(CreateView):
     model = Bird

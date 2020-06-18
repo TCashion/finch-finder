@@ -28,32 +28,62 @@
             <a href="{% url 'birds_delete' bird.id %}" class="btn crud-btn indigo accent-1">Delete</a>
         </div>
     </div>
+    <hr class="indigo mobile-hr" style="width:100%">
     <div class="col m12 l6" style="margin: 3vw auto">
+        <h3 class="indigo-text text-lighten-1">Add sightings:</h3>
         <form action="{% url 'add_sighting' bird.id %}" method="POST">
             {% csrf_token %}
             {{ sighting_form.as_p }}
             <button class="btn crud-btn indigo accent-1">Submit</button>
         </form>
+        <hr class="indigo mobile-hr" style="width:100%; margin: 30px 0;">
+        <div class="row">
+            <div class="col" style="width:100%;">
+              <div class="card-panel">
+                <h4 class="indigo-text text-lighten-1">Sightings:</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date:</th>
+                            <th>Habitat:</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for sighting in bird.sighting_set.all %}
+                            <tr>
+                                <td>{{ sighting.date }}</td>
+                                <td>{{ sighting.get_habitat_display }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                  </table>
+              </div>
+            </div>
+        </div>
     </div>
 </div>
 
 <script>
     const dateEl = document.getElementById('id_date');
     const selectEl = document.getElementById('id_habitat');
-    const selectionEls = document.querySelectorAll('.dropdown-content > li > span');
-    selectionEls.forEach(function(el) {
-        el.classList.add('indigo-text');
-        el.classList.add('text-lighten-1');
-    });
-
+    
     M.Datepicker.init(dateEl, {
         format: 'yyyy-mm-dd',
         defaultDate: new Date(),
         setDefaultDate: true, 
         autoClose: true
     });
-
+    
     M.FormSelect.init(selectEl);
+    
+    document.addEventListener('DOMContentLoaded', function(e) {
+        const selectionEls = document.querySelectorAll('.dropdown-content > li > span');
+        selectionEls.forEach(function(el) {
+            el.classList.add('indigo-text');
+            el.classList.add('text-lighten-1');
+        });
+    });
+
 </script>
 
 {% endblock %}
