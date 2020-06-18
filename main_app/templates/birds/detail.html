@@ -72,45 +72,45 @@
             <div class="col" style="width:100%;">
               <div class="card-panel">
                 <h4 class="indigo-text text-lighten-1">Where you've spotted this bird:</h4>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Location:</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for location in bird.locations.all %}
+                {% if bird.locations.count %}
+                    <table>
+                        <thead>
                             <tr>
-                                <td>{{ location.name }}</td>
+                                <th>Location:</th>
                             </tr>
-                        {% endfor %}
-                    </tbody>
-                  </table>
+                        </thead>
+                        <tbody>
+                            {% for location in bird.locations.all %}
+                                <tr>
+                                    <td>{{ location.name }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <p>No associated locations. Select from the right, or <a href="{% url 'locations_create' %}">create a new location</a>.</p>
+                {% endif %}
               </div>
             </div>
         </div>
     </div>
     <div class="col m12 l6" style="margin: 3vw auto">
         <h3 class="indigo-text text-lighten-1">Add location:</h3>
-    
-        <form action="" method="POST">
-        <!-- <form action="{% url 'add_sighting' bird.id %}" method="POST"> -->
-            {% csrf_token %}
-            <p>
-                <label for="">Location:</label>
-            </p>
-            <p>
-                <div class="input-field col s12">
-                    <select id="id_location">
-                        {% for location in locations %}
-                            <option value="{{ location.name }}">{{ location.name }}</option>
-                        {% endfor %}
-                    </select>
-                    <!-- <label>Materialize Select</label> -->
+        {% if bird.locations.count %}
+        <p>or <a href="{% url 'locations_create' %}">create a new one</a>.</p>
+        {% endif %}
+        {% for location in locations %}
+            <form action="{% url 'assoc_location' bird.id location.id %}" method="POST">
+                {% csrf_token %}
+                <div class="card hoverable indigo-text col s12">
+                    <div class="card-content">
+                        <h5 class="header">{{ location.name }}</h5>
+                        <p>{{ location.description }}</p>
+                    </div>
+                    <button class="btn crud-btn indigo accent-1">Add this location</button>
                 </div>
-            </p>
-            <button class="btn crud-btn indigo accent-1">Submit</button>
-        </form>
+            </form>
+        {% endfor %}
     </div>
 </div>
 
@@ -118,7 +118,6 @@
 <script>
     const dateEl = document.getElementById('id_date');
     const selectElOne = document.getElementById('id_habitat');
-    const selectElTwo = document.getElementById('id_location');
     
     M.Datepicker.init(dateEl, {
         format: 'yyyy-mm-dd',
@@ -128,7 +127,6 @@
     });
     
     M.FormSelect.init(selectElOne);
-    M.FormSelect.init(selectElTwo);
     
     document.addEventListener('DOMContentLoaded', function(e) {
         const selectionEls = document.querySelectorAll('.dropdown-content > li > span');

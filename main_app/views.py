@@ -44,6 +44,11 @@ def locations_detail(request, location_id):
     return render(request, 'locations/detail.html', {'location': location})
 
 
+def assoc_location(request, bird_id, location_id):
+    Bird.objects.get(id=bird_id).locations.add(location_id)
+    return redirect('birds_detail', bird_id=bird_id)
+
+
 class BirdCreate(CreateView):
     model = Bird
     fields = '__all__'
