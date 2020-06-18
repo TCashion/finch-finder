@@ -16,7 +16,7 @@ HABITATS = (
 # Create your models here.
 class Location(models.Model):
     name = models.CharField('Birding location', max_length=100)
-
+    description = models.TextField(max_length=250)
 
     def __str__(self):
         return f"Birding location: {self.name}"
