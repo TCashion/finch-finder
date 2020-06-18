@@ -9,5 +9,7 @@ urlpatterns = [
     path('birds/<int:pk>/update/', views.BirdUpdate.as_view(), name='birds_update'),
     path('birds/<int:pk>/delete/', views.BirdDelete.as_view(), name='birds_delete'),
     path('birds/<int:bird_id>/add_sighting', views.add_sighting, name='add_sighting'),
-    path('locations/', views.locations_index, name='locations_index')
+    path('locations/', views.locations_index, name='locations_index'),
+    path('locations/create/', views.LocationCreate.as_view(), name='locations_create'),
+    path('locations/<int:pk>/', views.LocationDetail.as_view(), name='locations_detail')
 ]

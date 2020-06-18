@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="row detail-card-container" style="display:flex">
+    <div class="col s12 m6" style="margin: 3vw auto">
+        <div class="card medium">
+            <div class="card-image">
+                <img src="https://via.placeholder.com/250x250">
+                <span class="card-title">{{ location.name }}</span>
+            </div>
+            <div class="card-content">
+                <p>{{ location.description }}</p>
+            </div>
+        </div>
+        <div class="row crud-btn-container">
+            <a href="/locations/" class="btn crud-btn indigo accent-2">Go Back</a>
+            <a href="" class="btn crud-btn indigo accent-1">Edit</a>
+            <a href="" class="btn crud-btn indigo accent-1">Delete</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

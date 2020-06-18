@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import DetailView
 from .models import Bird, Location
 from .forms import SightingForm
 
@@ -50,3 +51,12 @@ class BirdUpdate(UpdateView):
 class BirdDelete(DeleteView):
     model = Bird
     success_url = '/birds/'
+
+
+class LocationCreate(CreateView):
+    model = Location
+    fields = '__all__'
+
+
+class LocationDetail(DetailView):
+    model = Location

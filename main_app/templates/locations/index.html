@@ -5,7 +5,7 @@
 
     <div class="row">
         {% for location in locations %}
-        <a href="">
+        <a href="{% url 'locations_detail' location.id %}">
             <div class="card hoverable indigo-text col s12 m6 l4">
                 <div class="card-content">
                     <h5 class="header">{{ location.name }}</h5>

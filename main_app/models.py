@@ -21,6 +21,9 @@ class Location(models.Model):
     def __str__(self):
         return f"Birding location: {self.name}"
 
+    def get_absolute_url(self):
+        return reverse('locations_detail', kwargs={'pk': self.id})
+
 
 class Bird(models.Model):
     name = models.CharField('Common Name', max_length=100)
