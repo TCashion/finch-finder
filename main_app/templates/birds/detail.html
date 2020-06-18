@@ -77,12 +77,19 @@
                         <thead>
                             <tr>
                                 <th>Location:</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for location in bird.locations.all %}
                                 <tr>
                                     <td>{{ location.name }}</td>
+                                    <td>
+                                        <form action="{% url 'disassoc_location' bird.id location.id %}" method="POST">
+                                            {% csrf_token %}
+                                            <button class="btn indigo accent-1">Remove</button>
+                                        </form>
+                                    </td>
                                 </tr>
                             {% endfor %}
                         </tbody>

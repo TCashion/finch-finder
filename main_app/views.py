@@ -49,6 +49,11 @@ def assoc_location(request, bird_id, location_id):
     return redirect('birds_detail', bird_id=bird_id)
 
 
+def disassoc_location(request, bird_id, location_id):
+    Bird.objects.get(id=bird_id).locations.remove(location_id)
+    return redirect('birds_detail', bird_id=bird_id)
+
+
 class BirdCreate(CreateView):
     model = Bird
     fields = '__all__'
