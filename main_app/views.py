@@ -16,10 +16,12 @@ def birds_index(request):
 
 def birds_detail(request, bird_id):
     bird = Bird.objects.get(id=bird_id)
+    unassoc_locations = Location.objects.exclude(id__in = bird.locations.all().values_list('id'))
     sighting_form = SightingForm()
     return render(request, 'birds/detail.html', { 
         'bird': bird, 
-        'sighting_form': sighting_form
+        'sighting_form': sighting_form, 
+        'locations': unassoc_locations,
     })
 
 
