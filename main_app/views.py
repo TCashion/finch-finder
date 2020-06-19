@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Bird, Location, Sighting, BirdPhoto, LocationPhoto
 from .forms import SightingForm
 import uuid
@@ -18,11 +20,13 @@ def home(request):
     return render(request, 'home.html')
 
 
+@login_required
 def birds_index(request):
     birds = Bird.objects.filter(user=request.user)
     return render(request, 'birds/index.html', { 'birds': birds })
 
 
+@login_required
 def birds_detail(request, bird_id):
     bird = Bird.objects.get(id=bird_id)
     unassoc_locations = Location.objects.exclude(id__in = bird.locations.all().values_list('id')).filter(user=request.user)
@@ -34,6 +38,7 @@ def birds_detail(request, bird_id):
     })
 
 
+@login_required
 def add_sighting(request, bird_id):
     form = SightingForm(request.POST)
     if form.is_valid():
@@ -43,17 +48,20 @@ def add_sighting(request, bird_id):
     return redirect('birds_detail', bird_id=bird_id)
 
 
+@login_required
 def delete_sighting(request, bird_id, sighting_id):
     s = Sighting.objects.get(id=sighting_id)
     s.delete()
     return redirect('birds_detail', bird_id=bird_id)
 
 
+@login_required
 def locations_index(request):
     locations = Location.objects.filter(user=request.user)
     return render(request, 'locations/index.html', { 'locations' : locations })
 
 
+@login_required
 def locations_detail(request, location_id):
     birds = Bird.objects.filter(user=request.user)
     location = Location.objects.get(id=location_id)
@@ -63,16 +71,19 @@ def locations_detail(request, location_id):
     })
 
 
+@login_required
 def assoc_location(request, bird_id, location_id):
     Bird.objects.get(id=bird_id).locations.add(location_id)
     return redirect('birds_detail', bird_id=bird_id)
 
 
+@login_required
 def disassoc_location(request, bird_id, location_id):
     Bird.objects.get(id=bird_id).locations.remove(location_id)
     return redirect('birds_detail', bird_id=bird_id)
 
 
+@login_required
 def add_photo(request, bird_id, location_id):
     photo_file = request.FILES.get('photo-file', None)
     if photo_file:
@@ -109,7 +120,7 @@ def signup(request):
     return render(request, 'registration/signup.html', context)
 
 
-class BirdCreate(CreateView):
+class BirdCreate(LoginRequiredMixin, CreateView):
     model = Bird
     fields = ['name', 'scientific_name', 'description', 'invasive']
 
@@ -118,17 +129,17 @@ class BirdCreate(CreateView):
         return super().form_valid(form)
 
 
-class BirdUpdate(UpdateView):
+class BirdUpdate(LoginRequiredMixin, UpdateView):
     model = Bird
     fields = ['name', 'scientific_name', 'description', 'invasive']
 
 
-class BirdDelete(DeleteView):
+class BirdDelete(LoginRequiredMixin, DeleteView):
     model = Bird
     success_url = '/birds/'
 
 
-class LocationCreate(CreateView):
+class LocationCreate(LoginRequiredMixin, CreateView):
     model = Location
     fields = ['name', 'description']
 
@@ -137,11 +148,11 @@ class LocationCreate(CreateView):
         return super().form_valid(form)
 
 
-class LocationDelete(DeleteView):
+class LocationDelete(LoginRequiredMixin, DeleteView):
     model = Location
     success_url = '/locations/'
 
 
-class LocationUpdate(UpdateView):
+class LocationUpdate(LoginRequiredMixin, UpdateView):
     model = Location
     fields = '__all__'
