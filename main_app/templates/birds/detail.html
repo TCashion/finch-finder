@@ -78,6 +78,7 @@
                             <tr>
                                 <th>Location:</th>
                                 <th></th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -85,9 +86,12 @@
                                 <tr>
                                     <td>{{ location.name }}</td>
                                     <td>
+                                        <a href="{% url 'locations_detail' location.id %}" class="btn crud-btn indigo accent-1">Details</a>
+                                    </td>
+                                    <td>
                                         <form action="{% url 'disassoc_location' bird.id location.id %}" method="POST">
                                             {% csrf_token %}
-                                            <button class="btn indigo accent-1">Remove</button>
+                                            <button class="btn crud-btn indigo accent-1">Remove</button>
                                         </form>
                                     </td>
                                 </tr>
