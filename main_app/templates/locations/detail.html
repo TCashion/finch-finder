@@ -39,45 +39,16 @@
                     <tbody>
                         {% for bird in birds %}
                             {% if location in bird.locations.all %}
-                                    <tr>
-                                        <td>{{ bird.name }}</td>
-                                        <td>
-                                            <form action="" method="POST">
-                                                {% csrf_token %}
-                                                <button class="btn indigo accent-1">Details</button>
-                                        </td>
-                                    </tr>
-                                    {% endif %}
-                                {% endfor %}
-                            </tbody>
-                        </table>
-
-
-                {% if bird.locations.count %}
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Location:</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for location in bird.locations.all %}
                                 <tr>
-                                    <td>{{ location.name }}</td>
+                                    <td>{{ bird.name }}</td>
                                     <td>
-                                        <form action="{% url 'disassoc_location' bird.id location.id %}" method="POST">
-                                            {% csrf_token %}
-                                            <button class="btn indigo accent-1">Remove</button>
-                                        </form>
+                                        <a class="btn indigo accent-1" href="{% url 'birds_detail' bird.id %}">Details</a>
                                     </td>
                                 </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                {% else %}
-                    <p>No associated locations. Select from the right, or <a href="{% url 'locations_create' %}">create a new location</a>.</p>
-                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
               </div>
             </div>
         </div>
