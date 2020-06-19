@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 
 HABITATS = (
@@ -17,6 +18,7 @@ HABITATS = (
 class Location(models.Model):
     name = models.CharField('Birding location', max_length=100)
     description = models.TextField(max_length=250)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"Birding location: {self.name}"
@@ -31,6 +33,7 @@ class Bird(models.Model):
     description = models.TextField(max_length=250)
     invasive = models.BooleanField('Invasive?', default=False)
     locations = models.ManyToManyField(Location)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
