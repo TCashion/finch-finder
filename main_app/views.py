@@ -6,7 +6,7 @@ import uuid
 import boto3
 
 
-# configure AWS3 BUCKET
+# configure AWS3 server and BUCKET
 S3_BASE_URL = 'https://s3.us-west-1.amazonaws.com/'
 BUCKET = 'finchfinder'
 
