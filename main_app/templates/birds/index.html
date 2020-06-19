@@ -8,7 +8,11 @@
         <div class="col s12 m7 l6 xl4">
             <div class="card large hoverable">
                 <div class="card-image">
-                    <img src="https://via.placeholder.com/250x250">
+                    {% if bird.birdphoto_set.all|length > 0 %}
+                        <img src="{{ bird.birdphoto_set.first.url }}">
+                    {% else %}
+                        <img src="https://via.placeholder.com/250x250">
+                    {% endif %}
                     <span class="card-title">{{ bird.name }}</span>
                 </div>
                 <div class="card-content">

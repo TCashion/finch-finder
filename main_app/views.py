@@ -71,7 +71,7 @@ def disassoc_location(request, bird_id, location_id):
     return redirect('birds_detail', bird_id=bird_id)
 
 
-def add_photo(request, bird_id):
+def add_photo(request, bird_id, location_id):
     photo_file = request.FILES.get('photo-file', None)
     if photo_file:
         s3 = boto3.client('s3')
@@ -79,11 +79,17 @@ def add_photo(request, bird_id):
         try:
             s3.upload_fileobj(photo_file, BUCKET, key)
             url = f"{S3_BASE_URL}{BUCKET}/{key}"
-            photo = BirdPhoto(url=url, bird_id=bird_id)
+            if bird_id > 0:
+                photo = BirdPhoto(url=url, bird_id=bird_id)
+            elif location_id > 0:
+                photo = LocationPhoto(url=url, location_id=location_id)
             photo.save()
         except:
             print('An error occurred uploading file to S3')
-    return redirect('birds_detail', bird_id=bird_id)
+    if bird_id > 0:
+        return redirect('birds_detail', bird_id=bird_id)
+    elif location_id > 0:
+        return redirect('locations_detail', location_id=location_id)
 
 
 class BirdCreate(CreateView):
