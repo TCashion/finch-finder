@@ -19,13 +19,13 @@ def home(request):
 
 
 def birds_index(request):
-    birds = Bird.objects.all()
+    birds = Bird.objects.filter(user=request.user)
     return render(request, 'birds/index.html', { 'birds': birds })
 
 
 def birds_detail(request, bird_id):
     bird = Bird.objects.get(id=bird_id)
-    unassoc_locations = Location.objects.exclude(id__in = bird.locations.all().values_list('id'))
+    unassoc_locations = Location.objects.exclude(id__in = bird.locations.all().values_list('id')).filter(user=request.user)
     sighting_form = SightingForm()
     return render(request, 'birds/detail.html', { 
         'bird': bird, 
@@ -50,12 +50,12 @@ def delete_sighting(request, bird_id, sighting_id):
 
 
 def locations_index(request):
-    locations = Location.objects.all()
+    locations = Location.objects.filter(user=request.user)
     return render(request, 'locations/index.html', { 'locations' : locations })
 
 
 def locations_detail(request, location_id):
-    birds = Bird.objects.all()
+    birds = Bird.objects.filter(user=request.user)
     location = Location.objects.get(id=location_id)
     return render(request, 'locations/detail.html', {
         'location': location, 
