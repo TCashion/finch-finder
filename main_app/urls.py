@@ -19,4 +19,5 @@ urlpatterns = [
     path('locations/<int:location_id>/add_photo/', views.add_photo, name='add_photo'),
     path('locations/<int:pk>/delete/', views.LocationDelete.as_view(), name='locations_delete'),
     path('locations/<int:pk>/update/', views.LocationUpdate.as_view(), name='locations_update'),
+    path('accounts/signup/', views.signup, name='signup'),
 ]
