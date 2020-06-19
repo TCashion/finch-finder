@@ -94,7 +94,11 @@ def add_photo(request, bird_id, location_id):
 
 class BirdCreate(CreateView):
     model = Bird
-    fields = '__all__'
+    fields = ['name', 'scientific_name', 'description', 'invasive']
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 
 class BirdUpdate(UpdateView):
@@ -109,7 +113,11 @@ class BirdDelete(DeleteView):
 
 class LocationCreate(CreateView):
     model = Location
-    fields = '__all__'
+    fields = ['name', 'description']
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 
 class LocationDelete(DeleteView):
