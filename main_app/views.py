@@ -71,7 +71,7 @@ class BirdCreate(CreateView):
 
 class BirdUpdate(UpdateView):
     model = Bird
-    fields = '__all__'
+    fields = ['name', 'scientific_name', 'description', 'invasive']
 
 
 class BirdDelete(DeleteView):
