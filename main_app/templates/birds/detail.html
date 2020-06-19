@@ -46,6 +46,7 @@
                         <tr>
                             <th>Date:</th>
                             <th>Habitat:</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -53,6 +54,12 @@
                             <tr>
                                 <td>{{ sighting.date }}</td>
                                 <td>{{ sighting.get_habitat_display }}</td>
+                                <td>
+                                    <form action="{% url 'delete_sighting' bird.id sighting.id %}" method="POST">
+                                        {% csrf_token %}
+                                        <button class="btn crud-btn indigo accent-2">X</button>
+                                    </form>
+                                </td>
                             </tr>
                         {% endfor %}
                     </tbody>
@@ -91,7 +98,7 @@
                                     <td>
                                         <form action="{% url 'disassoc_location' bird.id location.id %}" method="POST">
                                             {% csrf_token %}
-                                            <button class="btn crud-btn indigo accent-1">Remove</button>
+                                            <button class="btn crud-btn indigo accent-2">X</button>
                                         </form>
                                     </td>
                                 </tr>
