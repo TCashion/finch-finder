@@ -5,7 +5,7 @@
     <div class="col s12 m6" style="margin: 3vw auto">
         <div class="card small">
             <div class="card-image">
-                <img src="https://via.placeholder.com/250x250">
+                <img src="{{ location.locationphoto_set.first.url }}">
                 <span class="card-title">{{ location.name }}</span>
             </div>
             <div class="card-content">
@@ -54,5 +54,27 @@
         </div>
     </div>
 </div>
+
+<hr class="indigo" style="width:100%">
+
+<form action="{% url 'add_photo' 0 location.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
+    {% csrf_token %}
+    <input type="file" name="photo-file">
+    <br><br>
+    <button type="submit" class="btn crud-btn indigo accent-1">Submit photo</button>
+
+</form>
+
+<div class="row detail-card-container" style="display:flex">
+    <div class="col s12" style="margin: 3vw auto">
+        <h3 class="indigo-text text-lighten-1">Photos:</h3>
+        {% for photo in location.locationphoto_set.all %}
+            <img src="{{ photo.url }}" alt="{{ location.name }} photo" class="responsive-img card-panel">
+        {% empty %}
+            <div class="card-panel indigo-text text-lighten1">No photos uploaded.</div>    
+        {% endfor %}
+    </div>
+</div>
+
 
 {% endblock %}

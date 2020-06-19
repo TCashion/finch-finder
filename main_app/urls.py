@@ -16,7 +16,7 @@ urlpatterns = [
     path('locations/', views.locations_index, name='locations_index'),
     path('locations/create/', views.LocationCreate.as_view(), name='locations_create'),
     path('locations/<int:location_id>/', views.locations_detail, name='locations_detail'),
-    # path('locations/<int:location_id>/add_photo/', views.add_photo, name='add_photo'),
+    path('locations/<int:location_id>/add_photo/', views.add_photo, name='add_photo'),
     path('locations/<int:pk>/delete/', views.LocationDelete.as_view(), name='locations_delete'),
     path('locations/<int:pk>/update/', views.LocationUpdate.as_view(), name='locations_update'),
 ]
