@@ -23,7 +23,7 @@
             </div>
         </div>
         <div class="row crud-btn-container">
-            <a href="/birds/" class="btn crud-btn indigo accent-2">Go Back</a>
+            <a href="/birds/" class="btn crud-btn indigo accent-1">Go Back</a>
             <a href="{% url 'birds_update' bird.id %}" class="btn crud-btn indigo accent-1">Edit</a>
             <a href="{% url 'birds_delete' bird.id %}" class="btn crud-btn indigo accent-1">Delete</a>
         </div>
@@ -57,7 +57,7 @@
                                 <td>
                                     <form action="{% url 'delete_sighting' bird.id sighting.id %}" method="POST">
                                         {% csrf_token %}
-                                        <button class="btn crud-btn indigo accent-2">X</button>
+                                        <button class="btn crud-btn indigo accent-1">X</button>
                                     </form>
                                 </td>
                             </tr>
@@ -98,7 +98,7 @@
                                     <td>
                                         <form action="{% url 'disassoc_location' bird.id location.id %}" method="POST">
                                             {% csrf_token %}
-                                            <button class="btn crud-btn indigo accent-2">X</button>
+                                            <button class="btn crud-btn indigo accent-1">X</button>
                                         </form>
                                     </td>
                                 </tr>
