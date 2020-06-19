@@ -32,10 +32,8 @@ class Bird(models.Model):
     invasive = models.BooleanField('Invasive?', default=False)
     locations = models.ManyToManyField(Location)
 
-
     def __str__(self):
         return self.name
-
 
     def get_absolute_url(self):
         return reverse('birds_detail', kwargs={'bird_id' : self.id})
@@ -52,3 +50,19 @@ class Sighting(models.Model):
 
     def __str__(self):
         return f"{self.get_habitat_display()} on {self.date}"
+
+
+class BirdPhoto(models.Model):
+    url = models.CharField(max_length=250)
+    bird = models.ForeignKey(Bird, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"Photo for bird_id: {self.bird_id} @{self.url}"
+
+
+class LocationPhoto(models.Model):
+    url = models.CharField(max_length=250)
+    location = models.ForeignKey(Location, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"Photo for location_id: {self.location_id} @{self.url}"

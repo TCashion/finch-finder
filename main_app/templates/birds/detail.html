@@ -132,6 +132,27 @@
     </div>
 </div>
 
+<hr class="indigo" style="width:100%">
+
+<form action="{% url 'add_photo' bird.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
+    {% csrf_token %}
+    <input type="file" name="photo-file">
+    <br><br>
+    <button type="submit" class="btn crud-btn indigo accent-1">Submit photo</button>
+
+</form>
+
+<div class="row detail-card-container" style="display:flex">
+    <div class="col s12" style="margin: 3vw auto">
+        <h3 class="indigo-text text-lighten-1">Photos:</h3>
+        {% for photo in bird.birdphoto_set.all %}
+            <img src="{{ photo.url }}" alt="{{ bird.name }} photo" class="responsive-img card-panel">
+        {% empty %}
+            <div class="card-panel indigo-text text-lighten1">No photos uploaded.</div>    
+        {% endfor %}
+    </div>
+</div>
+
 
 <script>
     const dateEl = document.getElementById('id_date');
