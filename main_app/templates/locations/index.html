@@ -7,10 +7,17 @@
         {% for location in locations %}
             <a href="{% url 'locations_detail' location.id %}">
                 <div class="col s12 m7 l6 xl4">
-                    <div class="card extra-small hoverable">
-                        <div class="card-content">
-                            <h5 class="header">{{ location.name }}</h5>
-                            <p>{{ location.description }}</p>
+                    <div class="card extra-small horizontal hoverable">
+                        <div class="card-image">
+                            {% if location.locationphoto_set.all|length > 0 %}
+                                <img class="card-thumbnail" src="{{ location.locationphoto_set.first.url }}">
+                            {% endif %}
+                        </div>
+                        <div class="card-stacked">
+                            <div class="card-content" style="padding:1rem; overflow:hidden">
+                                <h5 class="header">{{ location.name }}</h5>
+                                <p>{{ location.description }}</p>
+                            </div>
                         </div>
                     </div>
                 </div>

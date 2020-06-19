@@ -33,6 +33,11 @@ input[type=checkbox]:checked, input[type=checkbox]:not(:checked) {
     height: 150px;
 }
 
+.card-thumbnail {
+    height: 150px;
+    max-width: 100%;
+}
+
 @media (min-width: 600px) {
     .crud-btn-container {
         flex-direction: row;
