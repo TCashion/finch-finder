@@ -38,6 +38,10 @@ input[type=checkbox]:checked, input[type=checkbox]:not(:checked) {
     max-width: 100%;
 }
 
+.white-text {
+    color: #fff; 
+}
+
 @media (min-width: 600px) {
     .crud-btn-container {
         flex-direction: row;

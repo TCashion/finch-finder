@@ -17,32 +17,52 @@
             
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="nav-wrapper indigo">
-              <a href="/" class="left brand-logo">Finch Finder</a>
-              <ul class="right">
-                {% if user.is_authenticated %}
-                  <li class="indigo lighten-1"><a href="{% url 'locations_create' %}">+ Add new location</a></li>
-                  <li class="indigo lighten-1"><a href="{% url 'locations_index' %}">View all locations</a></li>
-                  <li><a href="{% url 'birds_create' %}">+ Add new bird</a></li>
-                  <li><a href="{% url 'birds_index' %}">View all birds</a></li>
-                  <li><a href="{% url 'logout' %}">Logout</a></li>
-                {% else %}
-                  <li><a href="{% url 'signup' %}">Signup</a></li>
-                  <li><a href="{% url 'login' %}">Login</a></li>
-                {% endif %}
-              </ul>
-            </div>
-          </nav>
-    </header>
-    <main class="container">
-        {% block content %}
-        {% endblock %}
-    </main>
-    <footer class="page-footer indigo">
-        <div class="right">All Rights Reserved, &copy; 2020 Finch Finder &nbsp;</div>
-    </footer>
-
+  <header>
+    <nav>
+      <div class="nav-wrapper indigo">
+        <a href="/" class="left brand-logo hide-on-med-and-down">Finch Finder</a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+          {% if user.is_authenticated %}
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'locations_create' %}">+ Add new location</a></li>
+            <li><a href="{% url 'locations_index' %}">View all locations</a></li>
+            <li><a href="{% url 'birds_create' %}">+ Add new bird</a></li>
+            <li><a href="{% url 'birds_index' %}">View all birds</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+          {% else %}
+            <li><a href="{% url 'signup' %}">Signup</a></li>
+            <li><a href="{% url 'login' %}">Login</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+    <ul class="sidenav indigo" id="mobile-demo">
+      {% if user.is_authenticated %}
+        <li><a class="white-text" href="{% url 'home' %}">Home</a></li>
+        <li><a class="white-text" href="{% url 'locations_create' %}">+ Add new location</a></li>
+        <li><a class="white-text" href="{% url 'locations_index' %}">View all locations</a></li>
+        <li><a class="white-text" href="{% url 'birds_create' %}">+ Add new bird</a></li>
+        <li><a class="white-text" href="{% url 'birds_index' %}">View all birds</a></li>
+        <li><a class="white-text" href="{% url 'logout' %}">Logout</a></li>
+      {% else %}
+        <li><a href="{% url 'signup' %}">Signup</a></li>
+        <li><a href="{% url 'login' %}">Login</a></li>
+      {% endif %}
+    </ul>
+  </header>
+  <main class="container">
+      {% block content %}
+      {% endblock %}
+  </main>
+  <footer class="page-footer indigo">
+      <div class="right">All Rights Reserved, &copy; 2020 Finch Finder &nbsp;</div>
+  </footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const navEls = document.querySelectorAll('.sidenav');
+      const instances = M.Sidenav.init(navEls, {});
+    });
+  </script>
 </body>
 </html>
