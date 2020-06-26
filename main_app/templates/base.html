@@ -39,17 +39,17 @@
     </nav>
     <ul class="sidenav indigo" id="mobile-demo">
       {% if user.is_authenticated %}
-        <li><a class="sidenav-close white-text" href="#">Close menu</a></li>
-        <li><a class="white-text" href="{% url 'home' %}">Home</a></li>
-        <li><a class="white-text" href="{% url 'birds_index' %}">View all birds</a></li>
-        <li><a class="white-text" href="{% url 'locations_index' %}">View all locations</a></li>
-        <li><a class="white-text" href="{% url 'birds_create' %}">+ Add new bird</a></li>
-        <li><a class="white-text" href="{% url 'locations_create' %}">+ Add new location</a></li>
-        <li><a class="white-text" href="{% url 'logout' %}">Logout</a></li>
-        {% else %}
-        <li><a class="sidenav-close white-text" href="#">Close menu</a></li>
-        <li><a class="white-text" href="{% url 'signup' %}">Signup</a></li>
-        <li><a class="white-text" href="{% url 'login' %}">Login</a></li>
+      <li><a class="sidenav-close white-text" href="#">Close menu</a></li>
+      <li><a class="white-text" href="{% url 'home' %}">Home</a></li>
+      <li><a class="white-text" href="{% url 'birds_index' %}">View all birds</a></li>
+      <li><a class="white-text" href="{% url 'locations_index' %}">View all locations</a></li>
+      <li><a class="white-text" href="{% url 'birds_create' %}">+ Add new bird</a></li>
+      <li><a class="white-text" href="{% url 'locations_create' %}">+ Add new location</a></li>
+      <li><a class="white-text" href="{% url 'logout' %}">Logout</a></li>
+      {% else %}
+      <li><a class="sidenav-close white-text" href="#">Close menu</a></li>
+      <li><a class="white-text" href="{% url 'signup' %}">Signup</a></li>
+      <li><a class="white-text" href="{% url 'login' %}">Login</a></li>
       {% endif %}
     </ul>
   </header>
@@ -63,12 +63,7 @@
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const navEls = document.querySelectorAll('.sidenav');
-      // const closeEl = document.getElementById('close-icon');
       const instances = M.Sidenav.init(navEls, {});
-
-      // closeEl.addEventListener('click', function(e) {
-      //   instances
-      // })
     });
   </script>
 </body>

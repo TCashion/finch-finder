@@ -122,3 +122,8 @@ STATIC_URL = '/static/'
 
 LOGIN_REDIRECT_URL = '/birds/'
 LOGOUT_REDIRECT_URL = '/'
+
+
+# Configure Django app for Heroku
+import django_heroku
+django_heroku.settings(locals())
