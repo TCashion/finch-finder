@@ -39,16 +39,12 @@ class Bird(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('birds_detail', kwargs={'bird_id' : self.id})
+        return reverse('birds_detail', kwargs={'bird_id': self.id})
 
 
 class Sighting(models.Model):
     date = models.DateField()
-    habitat = models.CharField(
-        max_length = 1,
-        choices = HABITATS, 
-        default = HABITATS[0][0],
-    )
+    habitat = models.CharField(max_length=1, choices=HABITATS, default=HABITATS[0][0])
     bird = models.ForeignKey(Bird, on_delete=models.CASCADE)
 
     def __str__(self):

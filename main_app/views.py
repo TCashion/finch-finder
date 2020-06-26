@@ -23,17 +23,17 @@ def home(request):
 @login_required
 def birds_index(request):
     birds = Bird.objects.filter(user=request.user)
-    return render(request, 'birds/index.html', { 'birds': birds })
+    return render(request, 'birds/index.html', {'birds': birds})
 
 
 @login_required
 def birds_detail(request, bird_id):
     bird = Bird.objects.get(id=bird_id)
-    unassoc_locations = Location.objects.exclude(id__in = bird.locations.all().values_list('id')).filter(user=request.user)
+    unassoc_locations = Location.objects.exclude(id__in=bird.locations.all().values_list('id')).filter(user=request.user)
     sighting_form = SightingForm()
-    return render(request, 'birds/detail.html', { 
-        'bird': bird, 
-        'sighting_form': sighting_form, 
+    return render(request, 'birds/detail.html', {
+        'bird': bird,
+        'sighting_form': sighting_form,
         'locations': unassoc_locations,
     })
 
@@ -58,7 +58,7 @@ def delete_sighting(request, bird_id, sighting_id):
 @login_required
 def locations_index(request):
     locations = Location.objects.filter(user=request.user)
-    return render(request, 'locations/index.html', { 'locations' : locations })
+    return render(request, 'locations/index.html', {'locations': locations})
 
 
 @login_required
@@ -66,7 +66,7 @@ def locations_detail(request, location_id):
     birds = Bird.objects.filter(user=request.user)
     location = Location.objects.get(id=location_id)
     return render(request, 'locations/detail.html', {
-        'location': location, 
+        'location': location,
         'birds': birds
     })
 
@@ -113,7 +113,7 @@ def signup(request):
             user = form.save()
             login(request, user)
             return redirect('birds_index')
-        else: 
+        else:
             error_message = 'Invalid sign up = try again'
     form = UserCreationForm()
     context = {'form': form, 'error_message': error_message}

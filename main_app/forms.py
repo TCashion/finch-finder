@@ -1,7 +1,8 @@
 from django.forms import ModelForm
 from .models import Sighting
 
+
 class SightingForm(ModelForm):
-    class Meta: 
+    class Meta:
         model = Sighting
         fields = ['date', 'habitat']
